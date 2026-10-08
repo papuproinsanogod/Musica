@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Reproductor Random</title>
+</head>
+<body style="background: #121212; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif;">
+
+    <!-- Título dinámico -->
+    <h2 id="song-title">¡Listo para reproducir!</h2>
+    
+    <!-- Reproductor de audio (¡Este era el que faltaba!) -->
+    <audio id="audio-player" controls></audio>
+    
+    <br>
+    <!-- Botón para modo aleatorio -->
+    <button onclick="playRandomSong()" style="padding: 12px 24px; background: #1db954; color: white; border: none; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 16px;">
+        🔀 Canción Aleatoria
+    </button>
+
+    <script>
+        const playlist = [
+            { titulo: "Lonely Day -  System of a down", archivo: "lonely-day.mp3" },
+            { titulo: "Sweet Child O' Mine - Guns n' roses", archivo: "sweet-child-o-mine.mp3" },
+            { titulo: "This I love - Guns n' roses", archivo: "this-i-love.mp3" },
+            { titulo: "Don't cry - Guns n' roses", archivo: "dont-cry.mp3" },
+            { titulo: "Welcome to the jungle - Guns n' roses", archivo: "welcome-to-the-jungle.mp3" },
+            { titulo: "Stop crying your heart out - Oasis", archivo: "stop-crying-your-heart-out.mp3" },
+            { titulo: "Wonderwall - Oasis", archivo: "wonderwall.mp3" },
+        ];
+
+        const audioPlayer = document.getElementById('audio-player');
+        const songTitle = document.getElementById('song-title');
+
+        function playRandomSong() {
+            if (playlist.length === 0) return;
+
+            const randomIndex = Math.floor(Math.random() * playlist.length);
+            const song = playlist[randomIndex];
+
+            audioPlayer.src = song.archivo;
+            songTitle.textContent = "Reproduciendo: " + song.titulo;
+            audioPlayer.play();
+        }
+    </script>
+
+</body>
+</html>
